@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+    <suite name="UK Regression Suite">
+    <listeners>
+        <listener class-name="com.tam.utility.Listners.TestListener"/>
+    </listeners>
+
+    <test name="InputFormTests">
+    <!-- <parameter name="emailid" value="tester456@gmail.com"/>-->
+    <classes>
+        <class name="com.tam.cukes.Runners.UK.RunnerOne"/>
+    </classes>
+    </test>
+<!--    <test name="CartTests">-->
+
+<!--        &lt;!&ndash; <parameter name="emailid" value="tester456@gmail.com"/>&ndash;&gt;-->
+<!--        <classes>-->
+<!--&lt;!&ndash;           All classes under a test tag run in same browser instance. for new browser need to create separate test tag &ndash;&gt;-->
+<!--            <class name="com.ecomm.TestCase.AP.CartTest2"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+
+    </suite>
