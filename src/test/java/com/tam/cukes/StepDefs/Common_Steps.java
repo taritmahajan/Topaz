@@ -22,9 +22,7 @@ public class Common_Steps extends Base {
         }else{
             ExtentManager.test.log(Status.FAIL,"Page title does not contain  " + partOfTitle
             + "  actual title is  " +  DriverManager.driver.getTitle());
-            String screenshotName = "TitleMatchFailed" + getTimeStamp();
-            captureScreenShot(screenshotName);
-            ExtentManager.test.addScreenCaptureFromPath(screenShotMap.get(screenshotName));
+           ExtentManager.addScreenshotToReport("titleMatchFailed");
         }
     }
 

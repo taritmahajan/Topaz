@@ -57,8 +57,7 @@ public class SFDC_Functions extends Base implements ISFDCSales{
         }catch (Exception e){
             ExtentManager.test.log(Status.FAIL,"Failed to enter text in " + fieldName);
             ExtentManager.test.log(Status.FAIL,e.getMessage());
-            captureScreenShot(fieldName+"_setTextFailed");
-            ExtentManager.test.addScreenCaptureFromPath(screenShotMap.get(fieldName+"_setTextFailed"));
+            ExtentManager.addScreenshotToReport("sfdcEnterFieldValueFailed");
         }
     }
 

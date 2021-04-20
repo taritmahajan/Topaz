@@ -19,7 +19,7 @@ import java.util.HashMap;
 public class Base {
 
      public static String screenShotPath = System.getProperty("user.dir") +"\\test-output\\screenshots\\";
-     public HashMap<String,String> screenShotMap= new HashMap<String,String>();
+     public  HashMap<String,String> screenShotMap= new HashMap<String,String>();
 
 
     public void mouseOver(WebElement object,String objectName){
@@ -30,9 +30,7 @@ public class Base {
         }catch (Exception e){
             ExtentManager.test.log(Status.FAIL,"Failed to hover at " + objectName);
             ExtentManager.test.log(Status.FAIL,e.getMessage());
-            String screenshotName = objectName + "_mouseOverFailed" + getTimeStamp();
-            captureScreenShot(screenshotName);
-            ExtentManager.test.addScreenCaptureFromPath(screenShotMap.get(screenshotName));
+            ExtentManager.addScreenshotToReport("mouseOverFailed");
         }
     }
 
@@ -43,9 +41,7 @@ public class Base {
         }catch (Exception e){
             ExtentManager.test.log(Status.FAIL,"Failed to click at " + objectName);
             ExtentManager.test.log(Status.FAIL,e.getMessage());
-            String screenshotName = objectName + "_clickFailed" + getTimeStamp();
-            captureScreenShot(screenshotName);
-            ExtentManager.test.addScreenCaptureFromPath(screenShotMap.get(screenshotName));
+            ExtentManager.addScreenshotToReport("clickFailed");
         }
     }
 
@@ -56,9 +52,7 @@ public class Base {
         }catch (Exception e){
             ExtentManager.test.log(Status.FAIL,"Failed to enter text in " + objectName);
             ExtentManager.test.log(Status.FAIL,e.getMessage());
-            String screenshotName = objectName + "_setTextFailed" + getTimeStamp();
-            captureScreenShot(screenshotName);
-            ExtentManager.test.addScreenCaptureFromPath(screenShotMap.get(screenshotName));
+            ExtentManager.addScreenshotToReport("setTextFailed");
         }
     }
 
@@ -77,9 +71,7 @@ public class Base {
             ExtentManager.test.log(Status.PASS,objectName + "  exists on page");
         }catch (NoSuchElementException e){
             ExtentManager.test.log(Status.FAIL,objectName + "  doesn't exists on page");
-            String screenshotName = objectName + "_elementExistsFailed" + getTimeStamp();
-            captureScreenShot(screenshotName);
-            ExtentManager.test.addScreenCaptureFromPath(screenShotMap.get(screenshotName));
+            ExtentManager.addScreenshotToReport("elementExistsFailed");
         }
     }
 
@@ -99,7 +91,7 @@ public class Base {
         screenShotMap.put(name,destination);
     }
 
-    public String getTimeStamp(){
+    public static String getTimeStamp(){
         DateFormat df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
         Date dateobj = new Date();
         return df.format(dateobj).replace("/","").replace(":","");

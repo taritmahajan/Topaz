@@ -31,5 +31,12 @@ public class ExtentManager {
    public static void generateReport(){
         report.flush();
    }
+
+   public static void addScreenshotToReport(String name){
+       Base base = new Base();
+       String screenshotName = name + base.getTimeStamp();
+       base.captureScreenShot(screenshotName);
+       ExtentManager.test.addScreenCaptureFromPath(base.screenShotMap.get(screenshotName));
+   }
     
 }
