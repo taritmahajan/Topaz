@@ -5,11 +5,14 @@ import com.aventstack.extentreports.Status;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -27,8 +30,9 @@ public class Base {
         }catch (Exception e){
             ExtentManager.test.log(Status.FAIL,"Failed to hover at " + objectName);
             ExtentManager.test.log(Status.FAIL,e.getMessage());
-            captureScreenShot(objectName+"_mouseOverFailed");
-            ExtentManager.test.addScreenCaptureFromPath(screenShotMap.get(objectName+"_mouseOverFailed"));
+            String screenshotName = objectName + "_mouseOverFailed" + getTimeStamp();
+            captureScreenShot(screenshotName);
+            ExtentManager.test.addScreenCaptureFromPath(screenShotMap.get(screenshotName));
         }
     }
 
@@ -39,8 +43,9 @@ public class Base {
         }catch (Exception e){
             ExtentManager.test.log(Status.FAIL,"Failed to click at " + objectName);
             ExtentManager.test.log(Status.FAIL,e.getMessage());
-            captureScreenShot(objectName+"_clickFailed");
-            ExtentManager.test.addScreenCaptureFromPath(screenShotMap.get(objectName+"_clickFailed"));
+            String screenshotName = objectName + "_clickFailed" + getTimeStamp();
+            captureScreenShot(screenshotName);
+            ExtentManager.test.addScreenCaptureFromPath(screenShotMap.get(screenshotName));
         }
     }
 
@@ -51,8 +56,9 @@ public class Base {
         }catch (Exception e){
             ExtentManager.test.log(Status.FAIL,"Failed to enter text in " + objectName);
             ExtentManager.test.log(Status.FAIL,e.getMessage());
-            captureScreenShot(objectName+"_setTextFailed");
-            ExtentManager.test.addScreenCaptureFromPath(screenShotMap.get(objectName+"_setTextFailed"));
+            String screenshotName = objectName + "_setTextFailed" + getTimeStamp();
+            captureScreenShot(screenshotName);
+            ExtentManager.test.addScreenCaptureFromPath(screenShotMap.get(screenshotName));
         }
     }
 
@@ -71,16 +77,16 @@ public class Base {
             ExtentManager.test.log(Status.PASS,objectName + "  exists on page");
         }catch (NoSuchElementException e){
             ExtentManager.test.log(Status.FAIL,objectName + "  doesn't exists on page");
-            captureScreenShot(objectName+"NotDisplayed");
-            captureScreenShot(objectName+"_elementExistsFailed");
-            ExtentManager.test.addScreenCaptureFromPath(screenShotMap.get(objectName+"_elementExistsFailed"));
+            String screenshotName = objectName + "_elementExistsFailed" + getTimeStamp();
+            captureScreenShot(screenshotName);
+            ExtentManager.test.addScreenCaptureFromPath(screenShotMap.get(screenshotName));
         }
     }
 
     public void captureScreenShot(String name){
         //take screenshot
         File file = ((TakesScreenshot) DriverManager.driver).getScreenshotAs(OutputType.FILE);
-        String ssName = name + "_" + getTimeStamp() + ".png";
+        String ssName = name + "_" + ".png";
         try {
             // now copy the  screenshot to desired location using copyFile //method
             FileUtils.copyFile(file,

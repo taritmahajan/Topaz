@@ -1,12 +1,13 @@
 package com.tam.cukes.StepDefs;
 
 import com.aventstack.extentreports.Status;
+import com.tam.utility.Support.Base;
 import com.tam.utility.Support.DriverManager;
 import com.tam.utility.Support.ExtentManager;
 import io.cucumber.java.en.Given;
 import org.testng.Assert;
 
-public class Common_Steps {
+public class Common_Steps extends Base {
 
     @Given("navigate to home page")
     public void navigate_to_home_page() {
@@ -21,9 +22,10 @@ public class Common_Steps {
         }else{
             ExtentManager.test.log(Status.FAIL,"Page title does not contain  " + partOfTitle
             + "  actual title is  " +  DriverManager.driver.getTitle());
+            String screenshotName = "TitleMatchFailed" + getTimeStamp();
+            captureScreenShot(screenshotName);
+            ExtentManager.test.addScreenCaptureFromPath(screenShotMap.get(screenshotName));
         }
-        //Assert.assertTrue(DriverManager.driver.getTitle().contains(partOfTitle));
     }
-
 
 }

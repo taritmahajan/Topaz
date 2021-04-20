@@ -4,6 +4,7 @@ import com.aventstack.extentreports.Status;
 import com.tam.utility.Support.Base;
 import com.tam.utility.Support.DriverManager;
 import com.tam.utility.Support.ExtentManager;
+import com.tam.utility.Support.WaitUtil;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -21,6 +22,8 @@ public class Page_Home extends Base {
     }
 
     public void navigateToInputSubmitPage(){
+        WaitUtil waitUtil = new WaitUtil();
+        waitUtil.waitForVisibility(INPUT_FORMS,10);
         click(INPUT_FORMS,"Input Forms");
         click(INPUT_FORMS_SUBMIT,"Input Forms submit");
     }
