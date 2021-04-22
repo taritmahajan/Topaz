@@ -70,7 +70,7 @@ public class Base {
             object.getSize();
             ExtentManager.test.log(Status.PASS,objectName + "  exists on page");
         }catch (NoSuchElementException e){
-            ExtentManager.test.log(Status.FAIL,objectName + "  doesn't exists on page");
+            ExtentManager.test.log(Status.FAIL,objectName + "  doesn't exists on page.");
             ExtentManager.addScreenshotToReport("elementExistsFailed");
         }
     }
